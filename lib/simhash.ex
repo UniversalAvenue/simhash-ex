@@ -4,26 +4,26 @@ defmodule Simhash do
   
   ## Examples
 
-    iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
-    0.71875
-    iex> Simhash.similarity("hocus pocus", "pocus hocus")
-    0.8125
-    iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1")
-    0.8125
-    iex> Simhash.similarity("Purple flowers", "Green grass")
-    0.5625
-    iex> Simhash.similarity("Peanut butter", "Strawberry cocktail")
-    0.4375
+      iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
+      0.71875
+      iex> Simhash.similarity("hocus pocus", "pocus hocus")
+      0.8125
+      iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1")
+      0.8125
+      iex> Simhash.similarity("Purple flowers", "Green grass")
+      0.5625
+      iex> Simhash.similarity("Peanut butter", "Strawberry cocktail")
+      0.4375
 
   By default trigrams (N-gram of size 3) are used as language features, but you can
   set a different N-gram size:
 
-    iex> Simhash.similarity("hocus pocus", "pocus hocus", 1)
-    1.0
-    iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1", 6)
-    0.859375
-    iex> Simhash.similarity("Purple flowers", "Green grass", 6)
-    0.546875
+      iex> Simhash.similarity("hocus pocus", "pocus hocus", 1)
+      1.0
+      iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1", 6)
+      0.859375
+      iex> Simhash.similarity("Purple flowers", "Green grass", 6)
+      0.546875
 
   Algorithm description: http://matpalm.com/resemblance/simhash/
   """
@@ -64,8 +64,8 @@ defmodule Simhash do
   @doc """
   Hamming distance between the left and right hash, given as lists of bits.
 
-    iex> Simhash.hamming_distance([1, 1, 0, 1, 0], [0, 1, 1, 1, 0])
-    2
+      iex> Simhash.hamming_distance([1, 1, 0, 1, 0], [0, 1, 1, 1, 0])
+      2
 
   """
   def hamming_distance(left, right) do
@@ -80,8 +80,10 @@ defmodule Simhash do
   Reduce list of lists to list of integers, following vector addition.
 
   Example:
-    iex> Simhash.vector_addition([[1, 3, 2, 1], [0, 1, -1, 2], [2, 0, 0, 0]])
-    [3, 4, 1, 3]
+
+      iex> Simhash.vector_addition([[1, 3, 2, 1], [0, 1, -1, 2], [2, 0, 0, 0]])
+      [3, 4, 1, 3]
+
   """
   def vector_addition(lists) do
     lists |> List.zip |> Enum.map(&Tuple.to_list/1) |> Enum.map(&Enum.sum/1)
@@ -98,8 +100,8 @@ defmodule Simhash do
   @doc """
   Returns N-gram of input str.
 
-    iex> Simhash.shingles("Universal")
-    ["Uni", "niv", "ive", "ver", "ers", "rsa", "sal"]
+      iex> Simhash.shingles("Universal")
+      ["Uni", "niv", "ive", "ver", "ers", "rsa", "sal"]
 
   [More about N-gram](https://en.wikipedia.org/wiki/N-gram#Applications_and_considerations)
   """
@@ -108,10 +110,11 @@ defmodule Simhash do
   @doc """
   Returns the 64bit Siphash for input str as bitstring.
 
-    iex> Simhash.siphash("abc")
-    <<249, 236, 145, 130, 66, 18, 3, 247>>
-    iex> byte_size(Simhash.siphash("abc"))
-    8
+      iex> Simhash.siphash("abc")
+      <<249, 236, 145, 130, 66, 18, 3, 247>>
+      iex> byte_size(Simhash.siphash("abc"))
+      8
+
   """
   def siphash(str), do: SipHash.hash!("0123456789ABCDEF", str) |> :binary.encode_unsigned
 end
