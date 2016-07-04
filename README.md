@@ -3,27 +3,31 @@ An Elixir implementation of [Moses Charikar's](http://www.cs.princeton.edu/cours
 
 ## Examples
 
-    iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
-    0.71875
-    iex> Simhash.similarity("hocus pocus", "pocus hocus")
-    0.8125
-    iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1")
-    0.8125
-    iex> Simhash.similarity("Purple flowers", "Green grass")
-    0.5625
+```elixir
+iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
+0.71875
+iex> Simhash.similarity("hocus pocus", "pocus hocus")
+0.8125
+iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1")
+0.8125
+iex> Simhash.similarity("Purple flowers", "Green grass")
+0.5625
+```
 
 By default trigrams (N-gram of size 3) are used as language features, but you can set a different N-gram size:
 
-    iex> Simhash.similarity("hocus pocus", "pocus hocus", 1)
-    1.0
-    iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1", 6)
-    0.859375
-    iex> Simhash.similarity("Purple flowers", "Green grass", 6)
-    0.546875
+```elixir
+iex> Simhash.similarity("hocus pocus", "pocus hocus", 1)
+1.0
+iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1", 6)
+0.859375
+iex> Simhash.similarity("Purple flowers", "Green grass", 6)
+0.546875
+```
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+The package can be installed as:
 
   1. Add simhash to your list of dependencies in `mix.exs`:
 

@@ -23,7 +23,9 @@ defmodule Simhash.Mixfile do
     %{
       files: ["lib", "mix.exs", "README.md"],
       links: %{"GitHub" => "https://github.com/UniversalAvenue/simhash",
-               "Docs" => "http://hexdocs.pm/simhash"}
+               "Docs" => "http://hexdocs.pm/simhash"},
+      licenses: [ "MIT" ],
+      maintainers: [ "Universal Avenue" ]
     }
   end
 
