@@ -23,7 +23,7 @@ defmodule Simhash.Mixfile do
     %{
       files: ["lib", "mix.exs", "README.md"],
       links: %{"GitHub" => "https://github.com/UniversalAvenue/simhash",
-               "Docs" => "http://hexdocs.pm/simhash"},
+               "Docs" => "https://hexdocs.pm/simhash"},
       licenses: [ "MIT" ],
       maintainers: [ "Universal Avenue" ]
     }
@@ -45,6 +45,7 @@ defmodule Simhash.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:siphash, "~> 3.1.1"}]
+    [{:siphash, "~> 3.1.1"},
+     {:ex_doc, ">= 0.0.0", only: :dev}]
   end
 end
