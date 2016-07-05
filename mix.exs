@@ -3,7 +3,7 @@ defmodule Simhash.Mixfile do
 
   def project do
     [app: :simhash,
-     version: "0.1.0",
+     version: "0.1.1",
      elixir: "~> 1.2",
      description: description(),
      package: package(),
@@ -22,7 +22,7 @@ defmodule Simhash.Mixfile do
   def package do
     %{
       files: ["lib", "mix.exs", "README.md"],
-      links: %{"GitHub" => "https://github.com/UniversalAvenue/simhash",
+      links: %{"GitHub" => "https://github.com/UniversalAvenue/simhash-ex",
                "Docs" => "https://hexdocs.pm/simhash"},
       licenses: [ "MIT" ],
       maintainers: [ "Universal Avenue" ]
