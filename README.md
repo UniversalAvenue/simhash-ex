@@ -32,7 +32,7 @@ The package can be installed as:
   1. Add simhash to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:simhash, "~> 0.1.1"}]
+          [{:simhash, "~> 0.1.2"}]
         end
 
   2. Ensure simhash is started before your application:
