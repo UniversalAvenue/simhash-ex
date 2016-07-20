@@ -3,8 +3,8 @@ defmodule Simhash.Mixfile do
 
   def project do
     [app: :simhash,
-     version: "0.1.1",
-     elixir: "~> 1.2",
+     version: "0.1.2",
+     elixir: "~> 1.3",
      description: description(),
      package: package(),
      build_embedded: Mix.env == :prod,

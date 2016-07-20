@@ -51,7 +51,7 @@ defmodule Simhash do
   Returns list of lists of bits of 64bit Siphashes for each shingle
   """
   def feature_hashes(subject, n) do
-    subject |> shingles(n) |> Enum.map(&siphash/1) |> Enum.map(&to_list/1)
+    subject |> n_grams(n) |> Enum.map(&siphash/1) |> Enum.map(&to_list/1)
   end 
 
   @doc """
@@ -98,14 +98,14 @@ defmodule Simhash do
   defp normalize_bits([]), do: []
 
   @doc """
-  Returns N-gram of input str.
+  Returns N-grams of input str.
 
-      iex> Simhash.shingles("Universal")
+      iex> Simhash.n_grams("Universal")
       ["Uni", "niv", "ive", "ver", "ers", "rsa", "sal"]
 
   [More about N-gram](https://en.wikipedia.org/wiki/N-gram#Applications_and_considerations)
   """
-  def shingles(str, n \\ 3), do: String.graphemes(str) |> Enum.chunk(n, 1) |> Enum.map(&Enum.join/1)
+  def n_grams(str, n \\ 3), do: String.graphemes(str) |> Enum.chunk(n, 1) |> Enum.map(&Enum.join/1)
 
   @doc """
   Returns the 64bit Siphash for input str as bitstring.
