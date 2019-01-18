@@ -124,7 +124,7 @@ defmodule Simhash do
   def n_grams(str, n \\ 3) do
     str
     |> String.graphemes()
-    |> Enum.chunk(n, 1)
+    |> Enum.chunk_every(n, 1, :discard)
     |> Enum.map(&Enum.join/1)
   end
 
