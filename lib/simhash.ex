@@ -1,7 +1,7 @@
 defmodule Simhash do
   @moduledoc """
   Provides simhash.
-  
+
   ## Examples
 
       iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
@@ -51,14 +51,17 @@ defmodule Simhash do
   Returns list of lists of bits of 64bit Siphashes for each shingle
   """
   def feature_hashes(subject, n) do
-    subject |> n_grams(n) |> Enum.map(&siphash/1) |> Enum.map(&to_list/1)
-  end 
+    subject
+    |> n_grams(n)
+    |> Enum.map(&siphash/1)
+    |> Enum.map(&to_list/1)
+  end
 
   @doc """
   Calculate the similarity between the left and right hash, using Simhash.
   """
   def hash_similarity(left, right) do
-    1 - (hamming_distance(left, right) / 64)
+    1 - hamming_distance(left, right) / 64
   end
 
   @doc """
@@ -69,8 +72,12 @@ defmodule Simhash do
 
   """
   def hamming_distance(left, right) do
-    [left, right] |> List.zip |> Enum.map(&xor/1) |> Enum.sum
+    [left, right]
+    |> List.zip()
+    |> Enum.map(&xor/1)
+    |> Enum.sum()
   end
+
   defp xor({1, 1}), do: 0
   defp xor({1, 0}), do: 1
   defp xor({0, 1}), do: 1
@@ -86,11 +93,14 @@ defmodule Simhash do
 
   """
   def vector_addition(lists) do
-    lists |> List.zip |> Enum.map(&Tuple.to_list/1) |> Enum.map(&Enum.sum/1)
+    lists
+    |> List.zip()
+    |> Enum.map(&Tuple.to_list/1)
+    |> Enum.map(&Enum.sum/1)
   end
 
-  defp to_list(<< 1 :: size(1), data :: bitstring >>), do: [ 1 | to_list(data)]
-  defp to_list(<< 0 :: size(1), data :: bitstring >>), do: [-1 | to_list(data)]
+  defp to_list(<<1::size(1), data::bitstring>>), do: [1 | to_list(data)]
+  defp to_list(<<0::size(1), data::bitstring>>), do: [-1 | to_list(data)]
   defp to_list(<<>>), do: []
 
   defp normalize_bits([head | tail]) when head > 0, do: [1 | normalize_bits(tail)]
@@ -105,7 +115,12 @@ defmodule Simhash do
 
   [More about N-gram](https://en.wikipedia.org/wiki/N-gram#Applications_and_considerations)
   """
-  def n_grams(str, n \\ 3), do: String.graphemes(str) |> Enum.chunk(n, 1) |> Enum.map(&Enum.join/1)
+  def n_grams(str, n \\ 3) do
+    str
+    |> String.graphemes()
+    |> Enum.chunk(n, 1)
+    |> Enum.map(&Enum.join/1)
+  end
 
   @doc """
   Returns the 64bit Siphash for input str as bitstring.
@@ -116,5 +131,5 @@ defmodule Simhash do
       8
 
   """
-  def siphash(str), do: SipHash.hash!("0123456789ABCDEF", str) |> :binary.encode_unsigned
+  def siphash(str), do: SipHash.hash!("0123456789ABCDEF", str) |> :binary.encode_unsigned()
 end

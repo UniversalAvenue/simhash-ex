@@ -2,14 +2,16 @@ defmodule Simhash.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :simhash,
-     version: "0.1.2",
-     elixir: "~> 1.3",
-     description: description(),
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps]
+    [
+      app: :simhash,
+      version: "0.1.2",
+      elixir: "~> 1.6",
+      description: description(),
+      package: package(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -22,17 +24,17 @@ defmodule Simhash.Mixfile do
   def package do
     %{
       files: ["lib", "mix.exs", "README.md"],
-      links: %{"GitHub" => "https://github.com/UniversalAvenue/simhash-ex",
-               "Docs" => "https://hexdocs.pm/simhash"},
-      licenses: [ "MIT" ],
-      maintainers: [ "Universal Avenue" ]
+      links: %{
+        "GitHub" => "https://github.com/UniversalAvenue/simhash-ex",
+        "Docs" => "https://hexdocs.pm/simhash"
+      },
+      licenses: ["MIT"],
+      maintainers: ["Universal Avenue"]
     }
   end
 
   defp description do
-    """
-    Simhash implementation using Siphash and N-grams.
-    """
+    "Simhash implementation using Siphash and N-grams."
   end
 
   # Dependencies can be Hex packages:
@@ -45,7 +47,9 @@ defmodule Simhash.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:siphash, "~> 3.1.1"},
-     {:ex_doc, ">= 0.0.0", only: :dev}]
+    [
+      {:siphash, "~> 3.1.1"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
   end
 end
