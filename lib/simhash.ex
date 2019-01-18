@@ -6,12 +6,16 @@ defmodule Simhash do
 
       iex> Simhash.similarity("Universal Avenue", "Universe Avenue")
       0.71875
+
       iex> Simhash.similarity("hocus pocus", "pocus hocus")
       0.8125
+
       iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1")
       0.8125
+
       iex> Simhash.similarity("Purple flowers", "Green grass")
       0.5625
+
       iex> Simhash.similarity("Peanut butter", "Strawberry cocktail")
       0.4375
 
@@ -20,8 +24,10 @@ defmodule Simhash do
 
       iex> Simhash.similarity("hocus pocus", "pocus hocus", 1)
       1.0
+
       iex> Simhash.similarity("Sankt Eriksgatan 1", "S:t Eriksgatan 1", 6)
       0.859375
+
       iex> Simhash.similarity("Purple flowers", "Green grass", 6)
       0.546875
 
@@ -127,6 +133,7 @@ defmodule Simhash do
 
       iex> Simhash.siphash("abc")
       <<249, 236, 145, 130, 66, 18, 3, 247>>
+
       iex> byte_size(Simhash.siphash("abc"))
       8
 
