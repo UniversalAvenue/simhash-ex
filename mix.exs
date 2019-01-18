@@ -49,7 +49,7 @@ defmodule Simhash.Mixfile do
   defp deps do
     [
       {:siphash, "~> 3.1.1"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.19.2", only: :dev}
     ]
   end
 end
