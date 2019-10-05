@@ -124,8 +124,18 @@ defmodule Simhash do
   def n_grams(str, n \\ 3) do
     str
     |> String.graphemes()
-    |> Enum.chunk_every(n, 1, :discard)
-    |> Enum.map(&Enum.join/1)
+    |> do_n_grams(n)
+  end
+
+  defp do_n_grams(graphemes, n) do
+    n_gram = graphemes |> Enum.take(n)
+
+    case length(n_gram) == n do
+      true ->
+        [n_gram |> :binary.list_to_bin | do_n_grams(tl(graphemes), n)]
+      false ->
+        []
+    end
   end
 
   @doc """
