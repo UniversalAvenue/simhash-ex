@@ -137,7 +137,8 @@ defmodule Simhash do
 
     case length(n_gram) == n do
       true ->
-        [n_gram |> :binary.list_to_bin | do_n_grams(tl(graphemes), n)]
+        [n_gram |> :binary.list_to_bin() | do_n_grams(tl(graphemes), n)]
+
       false ->
         []
     end
