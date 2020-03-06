@@ -27,20 +27,13 @@ iex> Simhash.similarity("Purple flowers", "Green grass", 6)
 
 ## Installation
 
-The package can be installed as:
-
-1. Add simhash to your list of dependencies in `mix.exs`:
+The package can be installed
+by adding `simhash` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:simhash, "~> 0.1.2"}]
-end
-```
-
-2. Ensure simhash is started before your application:
-
-```elixir
-def application do
-  [applications: [:simhash]]
+  [
+    {:simhash, "~> 0.1.2"}
+  ]
 end
 ```
