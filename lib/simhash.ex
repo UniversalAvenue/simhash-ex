@@ -98,12 +98,17 @@ defmodule Simhash do
       [3, 4, 1, 3]
 
   """
-  def vector_addition(lists) do
-    lists
-    |> List.zip()
-    |> Enum.map(&Tuple.to_list/1)
-    |> Enum.map(&Enum.sum/1)
+  def vector_addition([hd_list | tl_lists]) do
+    vector_addition(tl_lists, hd_list)
   end
+
+  def vector_addition([hd_list | tl_lists], acc_list) do
+    new_acc_list = :lists.zipwith(fn x, y -> x + y end, hd_list, acc_list)
+
+    vector_addition(tl_lists, new_acc_list)
+  end
+
+  def vector_addition([], acc_list), do: acc_list
 
   defp to_list(<<1::size(1), data::bitstring>>), do: [1 | to_list(data)]
   defp to_list(<<0::size(1), data::bitstring>>), do: [-1 | to_list(data)]
