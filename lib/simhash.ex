@@ -77,17 +77,17 @@ defmodule Simhash do
       2
 
   """
-  def hamming_distance(left, right) do
-    [left, right]
-    |> List.zip()
-    |> Enum.map(&xor/1)
-    |> Enum.sum()
+  def hamming_distance(left, right, acc \\ 0)
+
+  def hamming_distance([same | tl_left], [same | tl_right], acc) do
+    hamming_distance(tl_left, tl_right, acc)
   end
 
-  defp xor({1, 1}), do: 0
-  defp xor({1, 0}), do: 1
-  defp xor({0, 1}), do: 1
-  defp xor({0, 0}), do: 0
+  def hamming_distance([_ | tl_left], [_ | tl_right], acc) do
+    hamming_distance(tl_left, tl_right, acc + 1)
+  end
+
+  def hamming_distance([], [], acc), do: acc
 
   @doc """
   Reduce list of lists to list of integers, following vector addition.
